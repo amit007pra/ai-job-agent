@@ -4,7 +4,7 @@ from supabase_env import SUPABASE_URL, SUPABASE_KEY
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-st.set_page_config(page_title="Login / Signup", layout="centered", page_icon="🔏")
+st.set_page_config(page_title="Login/Signup", layout="centered", page_icon="🔏")
 
 st.title("AI Job Application Agent🤖")
 st.write("Welcome! This tool helps you apply for jobs using AI and Gmail.")
@@ -14,7 +14,7 @@ if "user" not in st.session_state:
     st.session_state.user = None
 
 if st.session_state.user:
-    st.switch_page("pages/main.py")
+    st.switch_page("main.py")
 
 tab1, tab2 = st.tabs(["Login🔐", "Sign Up🆕"])
 
@@ -26,8 +26,10 @@ with tab1:
         try:
             user = supabase.auth.sign_in_with_password({"email": email, "password": password})
             st.session_state.user = user
+            #st.session_state["credentials"]=None
             st.success("Login successful")
             st.switch_page("pages/main.py")
+
         except Exception as e:
             st.error(f"Login failed: {e}")
 
