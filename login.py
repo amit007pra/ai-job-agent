@@ -7,8 +7,6 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 st.set_page_config(page_title="Login/Signup", layout="centered", page_icon="🔏")
 
 st.title("AI Job Application Agent🤖")
-st.write("Welcome! This tool helps you apply for jobs using AI and Gmail.")
-st.write("Please login or sign up to start sending your job application to recuriters.")
 
 if "user" not in st.session_state:
     st.session_state.user = None
@@ -33,6 +31,16 @@ with tab1:
         except Exception as e:
             st.error(f"Login failed: {e}")
 
+    with st.popover("Forgot Password?"):
+        email = st.text_input("Enter your email address")
+        if st.button("Send Reset Link"):
+            try:
+                # Attempt to send password reset email
+                supabase.auth.reset_password_for_email(email,{"redirect_to": "http://localhost:8501/update-password",})
+                email_sent=st.success("Reset link sent to your email ✉️")
+            except Exception as e:
+                    st.error(f"Failed to send reset link: {e}")
+    
 with tab2:
     st.subheader("Sign Up")
     email = st.text_input("Email", key="signup_email")
@@ -43,3 +51,8 @@ with tab2:
             st.success("Check your email to confirm.")
         except Exception as e:
             st.error(f"Signup failed: {e}")
+
+def logout():
+    response = supabase.auth.sign_out()
+    st.session_state.user = None
+    st.switch_page("login.py")

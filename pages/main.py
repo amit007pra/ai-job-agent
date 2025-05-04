@@ -23,16 +23,16 @@ if uploaded_file:
 else:
     st.warning("Upload the the Gmail Credentials")
 
-st.write(st.session_state)
+save_cred=st.checkbox("Save Credentials to store the Credentials")
+#if save_cred: 
+     
 
 if st.button("Authenticate with Gmail📧"):
         try:
             service = authenticate_gmail()
             st.success("✅ Gmail authentication successful!")
-            st.write(st.session_state)
+            st.switch_page("pages/app.py")
+
         except Exception as e:
             st.error(f"Authentication failed: {e}")
 
-if st.button("Logout"):
-    st.session_state.user = None
-    st.switch_page("login.py")
