@@ -1,4 +1,3 @@
-# utils/email_sender.py
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -65,7 +64,6 @@ def send_bulk_emails(service):
 
         # Update flag on recruter.csv
         df.at[idx, 'sent_flag'] = True
-
     df.to_csv(DATA_PATH, index=False)
     return "✅ All emails processed!"
 

@@ -1,5 +1,4 @@
 import streamlit as st
-import urllib.parse
 from supabase import create_client
 from supabase_env import SUPABASE_URL, SUPABASE_KEY
 

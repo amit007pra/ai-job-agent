@@ -15,22 +15,23 @@ st.set_page_config(page_title="AI Job Application Agent", layout="centered")
 st.title("🤖 Automated Job Application Agent")
 st.write("Welcome! This application will contact multiple Hirings in a single click!")
 
-def dataform():
-    # Upload Dataset or Load existing
-    if DATA_PATH.exists():
+if st.button("Load recruiters data"):
+    try:
         df = pd.read_csv(DATA_PATH)
         st.success("Recruiter dataset loaded successfully!")
         st.dataframe(df)
-    else:
-        st.warning("No recruiter dataset found in `data/` folder.")
+    except FileNotFoundError:
+        st.warning("No recruiter dataset found in `data/` folder. Add a new recruiter")
+    except Exception as e:
+        st.error(f"An error occurred while loading the dataset: {str(e)}")
+    
+    if st.button("🚀 Send Emails to Recruiters"):
+        service = authenticate_gmail()
+        result = send_bulk_emails(service)
+        st.success(result)
 
-if st.button("Load recruiters data"):
-    dataform()
-
-if st.button("🚀 Send Emails to Recruiters"):
-    service = authenticate_gmail()
-    result = send_bulk_emails(service)
-    st.success(result)
+if st.button("Add Recruiter"):
+    st.switch_page("pages/addnew.py")
 
 if st.button("Logout"):
     st.session_state.user = None

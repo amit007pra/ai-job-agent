@@ -23,8 +23,7 @@ if uploaded_file:
 else:
     st.warning("Upload the the Gmail Credentials")
 
-save_cred=st.checkbox("Save Credentials to store the Credentials")
-#if save_cred: 
+save_cred_flag=st.checkbox("Save Credentials to avoid uploding")
      
 
 if st.button("Authenticate with Gmail📧"):
@@ -36,3 +35,6 @@ if st.button("Authenticate with Gmail📧"):
         except Exception as e:
             st.error(f"Authentication failed: {e}")
 
+st.write("Upload your Resume")
+resume_file = st.file_uploader("Choose a file", type="pdf")
+     
