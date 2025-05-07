@@ -1,2 +1,4 @@
 company_name,recruiter_name,recruiter_email,role,skills_required,sent_flag
-CloudAI,Amit,amitprasad.326@gmail.com,ML,Ml,False
+CloudAI,Amit,amitprasad.326@gmail.com,ML,Ml,True
+Infosys,Goutam Nandi,goutamnandi42215@gmail.com,TensorFlow Devloper,Terraform,True
+Hornet,Anabil,anabil.ironman@gmail.com,Dell Support Engineer,Bakchodi,True

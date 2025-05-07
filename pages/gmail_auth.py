@@ -44,12 +44,12 @@ def authenticate_gmail():
 def Load_Cred():
     creds = None
     # Load token if exists
-    st.write(TOKEN_PATH)
     if TOKEN_PATH.exists():
         with open(TOKEN_PATH, 'rb') as token:
             creds = pickle.load(token)
             print(creds)
-
+    
+    st.session_state['client_secrets_file']=creds
     # If no valid creds, prompt login
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
@@ -60,6 +60,8 @@ def Load_Cred():
         # Save the token
         with open(TOKEN_PATH, 'wb') as token:
             pickle.dump(creds, token)
+        st.session_state["credentials"] = creds
+        st.session_state["token"] = creds.token
 
     service = build('gmail', 'v1', credentials=creds)
     return service
