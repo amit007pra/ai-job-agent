@@ -8,6 +8,7 @@ import tempfile
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
 CRED_PATH= Path("secret/credential.json")
+TOKEN_PATH= Path("secret/token.pickle")
 
 def authenticate_gmail():
     creds = None
@@ -42,7 +43,6 @@ def authenticate_gmail():
 
 def Load_Cred():
     creds = None
-    TOKEN_PATH= Path("secret/token.pickle")
     # Load token if exists
     st.write(TOKEN_PATH)
     if TOKEN_PATH.exists():

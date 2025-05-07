@@ -13,7 +13,7 @@ DATA_PATH = Path("data/recruiters.csv")
 st.set_page_config(page_title="AI Job Application Agent", layout="centered")
 
 st.title("🤖 Automated Job Application Agent")
-st.write_stream("Welcome! This application will contact multiple Hirings in a single click!")
+st.write("Welcome! This application will contact multiple Hirings in a single click!")
 
 if st.button("Load recruiters data"):
     try:
@@ -25,13 +25,17 @@ if st.button("Load recruiters data"):
     except Exception as e:
         st.error(f"An error occurred while loading the dataset: {str(e)}")
     
+col1, col2 = st.columns(2)
+
+with col1:
     if st.button("🚀 Send Emails to Recruiters"):
         service = authenticate_gmail()
         result = send_bulk_emails(service)
         st.success(result)
 
-if st.button("Add Recruiter"):
-    st.switch_page("pages/addnew.py")
+with col2:
+    if st.button("Add Recruiter"):
+        st.switch_page("pages/addnew.py")
 
 if st.button("Logout"):
     st.session_state.user = None

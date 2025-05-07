@@ -15,8 +15,12 @@ with st.form("new_recruiter_form", clear_on_submit=True):
     recruiter_email = st.text_input("Recruiter Email")
     role = st.text_input("Role Hiring For")
     skills_required = st.text_input("Skills Required (comma-separated)")
-
-    submit = st.form_submit_button("➕ Add Recruiter")
+    col1, col2 = st.columns(2)
+    with col1:
+        submit = st.form_submit_button("➕ Add Recruiter")
+    with col2:
+        if st.button("cancel"):
+            st.switch_page("pages/app.py")
 
 # Handle form submission
 if submit:
