@@ -13,7 +13,7 @@ DATA_PATH = Path("data/recruiters.csv")
 st.set_page_config(page_title="AI Job Application Agent", layout="centered")
 
 st.title("🤖 Automated Job Application Agent")
-st.write("Welcome! This application will contact multiple Hirings in a single click!")
+st.write_stream("Welcome! This application will contact multiple Hirings in a single click!")
 
 if st.button("Load recruiters data"):
     try:

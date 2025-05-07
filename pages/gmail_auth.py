@@ -1,3 +1,5 @@
+from pathlib import Path
+import pickle
 import streamlit as st
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -5,6 +7,7 @@ from googleapiclient.discovery import build
 import tempfile
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+CRED_PATH= Path("secret/credential.json")
 
 def authenticate_gmail():
     creds = None
@@ -36,3 +39,27 @@ def authenticate_gmail():
 
     # Return Gmail service
     return build('gmail', 'v1', credentials=creds)
+
+def Load_Cred():
+    creds = None
+    TOKEN_PATH= Path("secret/token.pickle")
+    # Load token if exists
+    st.write(TOKEN_PATH)
+    if TOKEN_PATH.exists():
+        with open(TOKEN_PATH, 'rb') as token:
+            creds = pickle.load(token)
+            print(creds)
+
+    # If no valid creds, prompt login
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(str(CRED_PATH), SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the token
+        with open(TOKEN_PATH, 'wb') as token:
+            pickle.dump(creds, token)
+
+    service = build('gmail', 'v1', credentials=creds)
+    return service
