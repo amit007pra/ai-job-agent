@@ -4,6 +4,7 @@ from email.mime.application import MIMEApplication
 import base64
 import pandas as pd
 from pathlib import Path
+from utils.ai_writer import generate_email
 
 RESUME_PATH = Path("data/Resume.pdf") 
 DATA_PATH = Path("data/recruiters.csv")
@@ -49,8 +50,16 @@ def send_bulk_emails(service):
             role=row['role'],
             skills=row['skills_required']
         )""" #
-        email_body = " This is an AI_Genertaed Email. You can check out my GitHub: https://github.com/amit007pra"
-        # Currently OpenAI API is not working due to no Credit, so testing the app with out the AI prompt. 
+        email_body =  f"""Hello {row['recruiter_name']} \n I hope you're doing well.
+
+I'm writing to express my keen interest in the DevOps position. With four years of experience in Linux, containerization (Docker, Kubernetes), cloud platforms (Azure, AWS), and CI/CD automation, I believe my background aligns strongly with the role’s requirements.
+
+I am passionate about continuous learning and actively upskill myself in areas like cloud infrastructure, automation, and scripting. I enjoy applying creative solutions to technical challenges, and I’m excited about opportunities where I can contribute and grow.
+
+Please let me know if I may share my resume for your consideration. Thank you for your time, and I look forward to the opportunity to speak further. 
+
+This email is sent via an AI-JOB-AGENT tool which i have hosted on my Github profile: https://github.com/amit007pra/ai-job-agent."""
+        # Currently OpenAI API is not working due to no Credit, so testing the app without the AI prompt. 
         message = create_message(
             sender="me",
             to=row['recruiter_email'],
