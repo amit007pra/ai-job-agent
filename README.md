@@ -24,9 +24,9 @@ pip install -r requirements.txt
 
 ### 3. Configure Gmail API Access
 
-- Go to Google Cloud Console
-- Create a new project and enable Gmail API
-- Create OAuth 2.0 Credentials and download credentials.json
+Go to Google Cloud Console
+Create a new project and enable Gmail API
+Create OAuth 2.0 Credentials and download credentials.json
 
 ### 4. Export your OpenAI API key
 
@@ -43,9 +43,9 @@ streamlit run login.py
 
 ## 🛠️ Tech Stack
 
-- Python
-- Gmail API
-- OpenAI API (or LLM model of your choice)
-- Streamlit 
-- Pandas, smtplib, email
-- OAuth2.0
+Python
+Gmail API
+OpenAI API (or LLM model of your choice)
+Streamlit 
+Pandas, smtplib, email
+OAuth2.0
