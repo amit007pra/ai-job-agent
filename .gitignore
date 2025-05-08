@@ -1,3 +1,4 @@
 /supabase_env.py
 secret/
-data/
+data/resume.pdf
+data/recruiters.csv
