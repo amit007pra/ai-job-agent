@@ -1,2 +1,9 @@
 streamlit
 supabase
+streamlit
+pandas
+google-auth
+google-auth-oauthlib
+google-api-python-client
+openai
+python-dotenv 
