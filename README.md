@@ -15,8 +15,8 @@ An AI-powered tool that automates your job application process. It integrates wi
 
 ### 1. Clone the Repository
 
-git clone https://github.com/amit007pra/ai-job-agent
-cd ai-job-application-assistant 
+- git clone https://github.com/amit007pra/ai-job-agent
+- cd ai-job-application-assistant 
 
 ### 2. Install the required packages
 
@@ -24,9 +24,9 @@ pip install -r requirements.txt
 
 ### 3. Configure Gmail API Access
 
-Go to Google Cloud Console
-Create a new project and enable Gmail API
-Create OAuth 2.0 Credentials and download credentials.json
+- Go to Google Cloud Console
+- Create a new project and enable Gmail API
+- Create OAuth 2.0 Credentials and download credentials.json
 
 ### 4. Export your OpenAI API key
 
@@ -38,14 +38,14 @@ streamlit run login.py
 
 ## Next stage of Development:
 
-- 🔁 **Follow-up Reminders & Automation** after 7 days
+- 🔁 **Follow-up, Reminders & Automation** after 7 days
 - 🔔 **Interview Notification UI**, with visual cues (e.g., green alerts)
 
 ## 🛠️ Tech Stack
 
-Python
-Gmail API
-OpenAI API (or LLM model of your choice)
-Streamlit 
-Pandas, smtplib, email
-OAuth2.0
+- Python
+- Gmail API
+- OpenAI API (or LLM model of your choice)
+- Streamlit 
+- Pandas, smtplib, email
+- OAuth2.0
